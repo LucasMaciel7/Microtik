@@ -1,9 +1,3 @@
-# Microtick
-Estudos em microtick
-![alt text](img/image.png)
-
-
-
 # CLI MikroTik
 
 ## Atalhos no CLI
@@ -318,7 +312,7 @@ Colocar o codigo de criação do DHCP
 
 ## Hardware offload
 
-Quando se cria uma bridge ele ja traz a teclonogia de hardware offload para poder trafegar dados somente nas portas do swithc, agora quando se tem uma interface normal
+Quando se cria uma bridge ele ja traz a teclonogia de hardware offload para poder trafegar dados somente nas portas do switch, agora quando se tem uma interface normal
 o trafego de dados se passa dentro dentro do switch chip que gerencia as portas até a CPU para decisões de roteamento.
 
 Para se criar um bridge
@@ -393,3 +387,186 @@ Sendo assim nossos computadores das duas redes locais consguem se conectar, um u
 ip/route add gateway=10.10.1.1/30
 ```
 Quando não apontamos o dst-address via cli ele automaticamente detecta que faz parte de uma rota default e que o destino é 0.0.0.0/0 que será a internet.
+
+
+# Wireless
+
+Microtick router os prevê suporte completo aos padrões de rede wireless IEEE
+    - 802.11a/n/ac(5Ghz)
+    - 802.11b/g/n(2.4Ghz
+    - 802.11ad/(60Ghz) Wireless WIre
+
+## NV2
+
+    - É um protocolo Wireles propietario da Microtick
+    - Beneficios
+        - Maior Velocidade
+        - Baixa Latência
+    - TDMA - TIma DIvision MUltiple Access
+    - O NV2 não aceita Birtual AP e o limite é de 511
+
+| **Padrão IEEE** | **Frequência** | **Velocidade**        |
+|----------------|--------------|----------------------|
+| 802.11a       | 5GHz         | 54Mbps              |
+| 802.11b       | 2.4GHz       | 11Mbps              |
+| 802.11g       | 2.4GHz       | 54Mbps              |
+| 802.11n       | 2.4 e 5GHz   | Até 450 Mbps*       |
+| 802.11ac      | 5GHz         | Até 1300 Mbps*      |
+| 802.11ad      | 60GHz        | 2 Gbps              |
+
+*Depende do modelo RB
+
+
+![alt text](image.png)
+
+Atualmente pode se ultilizar 3 Aps microtick na mesma rede sem sofrer interferencia de sinal
+
+Para ativar de certa maneira o "mesh" colocar os aps com mesmo ssid e senha que ja irá fazer o roming normalmente.
+
+Pontos importantes:
+    - Quanto maior a largura do canal
+        - Menor numero de numero de canais
+        - Mais vulneravel a interferências
+        - Diminuiu a a potencia do sinal a logas distancias
+    
+
+## Modes Wifi
+| Modo            | Se conecta a um AP | Atua como AP | Passa múltiplos MACs? | Uso comum                     |
+|---------------|----------------|-----------|----------------|-----------------------------|
+| **Station Bridge** | ✅ Sim | ❌ Não | ✅ Sim | Cliente Wi-Fi transparente |
+| **AP Bridge** | ❌ Não | ✅ Sim | ✅ Sim | Roteador principal Wi-Fi |
+| **Bridge** | ✅ Sim (somente 1 AP) | ❌ Não | ❌ Não | Links PTP |
+| **Station** | ✅ Sim | ❌ Não | ❌ Não | Cliente Wi-Fi com NAT |
+
+
+
+
+
+
+
+
+
+# firewall
+
+## Stateless
+
+firewall stateles normalmente tende a somente verificar o cabeçalho da requisição e deixar passar, ele não grava em si se aquele pacote ou conexão 
+ja pertence ou esta ativa. Apenas se é analisado o cabeçalho do pacote e ip de destino e se aplica a configurações predefinidas do administrador da rede.
+
+    Vantagens
+        - Mais rapido pois não precisa manter tabelas de conexão
+        - Menos consumo de memoria e CPU
+        - Util para cenarios de alto desempenho como load balances.
+
+    Desvantagens
+        - Menos seguro, pois não consegue detectar ataques que exploram conexões estabelecidas
+        - Pode permitir trafego não autorizado por não reconhecer conexões estabelecidas.
+
+## Statefull
+
+Em contrapartida o statefull  mantem o rastreamento das conexões ativas da rede. Isso significa que ele analisa não apenas pacotes individualmente, mas tambem
+a relação dos pacotes com as conexões ja estabelecidas. Ele verifica se o pacote faz parte de uma conexão existente ou se esta tentando estabelecer uma nova conexão
+assim ele consegue permitr ou bloquear pacotes com base no estado da conexão.
+
+    Vantagens
+    -   Maior segurança, pois verifca se o trafego são de conexões legitimas
+    -   Redução de trafego desencesário, ja que não precisa reavaliar pacotes conhecidos
+    -   Permite criar regras mais sofisticadas, como permitir apenas conexões iniciadas de dentro da rede.
+
+    Desvantagens
+    -   Consome mais recurso (Memoria e processamento) por armazenar estados das conexões
+
+
+
+## Filter rules
+
+Filter rules é onde criamos nossa regras de firewall para permitir ou bloquear trafego em nossa rede com base em diversos criterios como IP, Porta, protocolo e lan
+Exemplos: 
+    - BLoquear sites: Criar regra para impedir acesso a domínios especificos
+    - Liberar ou bloquear Portas: Definir quais portas podem ser acessadas de dentro da rede.
+    - Proteção LAN: Bloquear acessos indesejados na rede local 
+    - segurança do seu router: Impedir ataques como Brute Force, DDoS e proteger serviços administrativos como SSH e winbox
+
+Exemplo de comando:
+```bash
+/ip firewall filter add chain=forward action=drop dst-port=22 protocol=tcp
+```
+Aqui estamos bloqueando o trafego na porta SSH(22)
+
+## NAT(Network address translation)
+
+O Nat é onde podemos modificar os endereços e portas dos pacotes que entram e saem da rede.
+
+`Tipos prncipais de NAT`:
+    -   `Masquerade`: Usado mascarar um IP local para um IP publico
+    -   `Dst-NAT(Destination NAT)`: Redireciona pacotes para um IP e porta especificos
+            - Exemplo:
+                Direcionar trafego da porta 80 para um servidor WEB
+        
+    -   `Src-NAT(Source NAT)`: Altera o ip de origem dos  pacotes
+
+Exemplo de comando ultilizando src-nat e Masquerade:
+```bash
+/ip firewall nat add chain=srcnat action=masquerade out-interface=ether1
+```
+Tudo que vier da minha rede local, saem pela interface ether 1 para que todos compartilhem o mesmo IP publico
+
+
+## Mangle
+O Mangle permite manipular pacotes para controle de trafego avançado, marcação de conexões e implementação de balanceamento de carga.
+Pricipais usos:
+    -   `Load Balances`: Distribuir tráfego entre multiplos links de internet.
+    -   `Marcaçoes de pacotes e conexões`: Para aplicar regras especificas baseado no trafego
+    -   `Alterações de pacotes TTL(Time to live)`: Impedir que provedores detectem roteamento de internet compartilhado
+
+Exemplo de marcação de pacote para load balance:
+
+```bash
+/ip firewall mangle add chain=prerouting action=mark-connection new-connection-mark=WAN1_conn passthrough=yes in-interface=WAN1
+```
+Aqui, estamos marcando conexões que entram pela interface WAN1
+
+
+
+## Raw
+firewall que age diretamente na interface WAN do microtick antes mesmo de passar pelas regras de Filter, NAT e mangle, ele pode descartar pacotes antes que sejam 
+analisados pelo restante do firewall.
+
+Principais usos: 
+    -   Descartar pacotes antes que chegue no firewall do Microtick, evitando aumento do processamento do equipamento
+    -   Proteção contra ataques DDoS e scans de rede, podendo descartar pacotes maliciosos como SYN fload, Port Scanners e outros ataques comums.
+    
+Exemplos de comandos: 
+
+    1. Bloqueio de pacotes de ataques DDoS
+    ```bash
+    /ip firewall raw add chain=prerouting protocol=tcp tcp-flags=syn action=drop
+    ```
+    2. Bloqueia uma lista de ips suspeitos realizando scans de porta
+    ```bash
+    /ip firewall raw add chain=prerouting src-address-list action=drop
+    ```
+
+
+### Tipos de chain
+![chain](/Microtick/img/chains.png)
+
+Dentro do conceito de firewall temos três tipos padrões  de fluxos de pacotes.
+    - `Input`: Destinado ao router
+    - `Foward`: Passando pelo router
+    - `Output`: A partir do router
+
+#### Input
+
+![Chain input](/Microtick/img/chain-input.png)
+
+Tudo que se chega ao seu router, seja da internet ou rede local se considera como LAN
+
+#### Foward
+![chain forward](image.png)
+Todo trafego que passe pelo nosso Microtick.
+Exemplo, computador da minha rede local quer se comunicar com a impressora, o dst-addres que o computador manda a requisição é diretamente o IP da minha impressora, porem obrigatoriamente ele tende a passar pelo gateway, isso seria um trafego do tipo foward.
+
+
+#### Output
+Seria todo trafego inicializado a partir de meu router.
