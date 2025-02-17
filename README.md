@@ -549,7 +549,7 @@ Exemplos de comandos:
 
 
 ### Tipos de chain
-![chain](/Microtick/img/chains.png)
+![chain](/img/chains.png)
 
 Dentro do conceito de firewall temos três tipos padrões  de fluxos de pacotes.
     - `Input`: Destinado ao router
@@ -558,12 +558,12 @@ Dentro do conceito de firewall temos três tipos padrões  de fluxos de pacotes.
 
 #### Input
 
-![chain-input](/Microtick/img/chain-input.png)
+![chain-input](/img/chain-input.png)
 
 Tudo que se chega ao seu router, seja da internet ou rede local se considera como LAN
 
 #### Foward
-![chain-forward](/Microtick/img/chain-foward.png)
+![chain-forward](/img/chain-foward.png)
 Todo trafego que passe pelo nosso Microtick.
 Exemplo, computador da minha rede local quer se comunicar com a impressora, o dst-addres que o computador manda a requisição é diretamente o IP da minha impressora, porem obrigatoriamente ele tende a passar pelo gateway, isso seria um trafego do tipo foward.
 
