@@ -1,3 +1,25 @@
+# Estudos em Microtik para certificação MTCNA
+
+Curso distribuido através da six core, ministrado pelo instrutor profissional Leonardo Vieira.
+pela empresa: https://www.linkedin.com/company/sixcoretreinamentos/posts/?feedView=all
+https://www.linkedin.com/in/albuquerqueleonardo/
+
+Gostaria através deste conteudo descrito mostrar todas as minhas anotações retiradas do curso de 20 horas MTCNA V7 da empresa SixCore, demonstrar minhas habilidades recem adiquiridas do curso.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # CLI MikroTik
 
 ## Atalhos no CLI
@@ -154,12 +176,12 @@ Este comando ativa o romon com sua respectiva senha
 tool/romon/set enabled=yes secrets=88191198
 ```
 
-## Criar usuarios
+## Criar usuários
 
-Para criar um usuario no microtick fica em 
+Para criar um usuário no microtik fica em 
 
 ```bash
-/user add name=usuario password=senha group=full
+/user add name=usuário password=senha group=full
 
 ```
 
@@ -199,7 +221,7 @@ Para desabilitar a porta de um serviço
 ```
 
 ## Alterar Identificação do roteador
-Mudar o nome do roteador Microtick
+Mudar o nome do roteador microtik
 
 ```bash
 /system/indentfy set name=<Nome do roteador>
@@ -207,12 +229,12 @@ Mudar o nome do roteador Microtick
 
 
 ## Backup
-Dentro do Microtick deve se sempre subir o backup no mesmo tipo de equipamento
+Dentro do microtik deve se sempre subir o backup no mesmo tipo de equipamento
 
 ### Tipos de backup
 
-    - .bkp: Clona MAC das interfaces, usuarios e senhas de ROS
-    - RSC: Compativel com Harddware diferentes, pode fazer backup e restore por partes do conteudo.
+    - .bkp: Clona MAC das interfaces, usuários e senhas de ROS
+    - RSC: Compatível com Hardware diferentes, pode fazer backup e restore por partes do conteudo.
 
 Comando para gerar um bkp
 ```bash
@@ -276,13 +298,13 @@ export file=tudo
 # Botão de Reset
 Botão de reset tem 4 funções adicionadas da seguinte forma
 
-    - Desligar a fonte da RB
-    - Ligar a RB com o reset precionado
-    - Solte o botão reset no tempo X
-        - 3 Seg ativa o backup da RouterBOOT
-        - 5 seg resert do equipamento
-        - 10 seg ativa o modo CAPS(A parte de WI-FI irá ser administrada por outro equipamento na rede )
-        - 15 seg ou mais reinstalação via Netinstall
+- Desligar a fonte da RB
+- Ligar a RB com o reset pressionado
+- Solte o botão reset no tempo X
+    - 3 Seg ativa o backup da RouterBOOT
+    - 5 seg resert do equipamento
+    - 10 seg ativa o modo CAPS(A parte de WI-FI irá ser administrada por outro equipamento na rede )
+    - 15 seg ou mais reinstalação via Netinstall
 
 
 
@@ -329,7 +351,7 @@ interface/bridge/port/add bridge=bridge-Lan interface=ehter
 
 # Roteamento
 
-Flags
+Aqui está todas as flags de roteamento
 
     -   D - dynamic
     -   X - disabled
@@ -348,12 +370,11 @@ Flags
     -   ecmp - Equal-Cost Multi-Path
 
 ip > routes
+Conceito de roteamento do winbox é muito simples, temos que responder duas perguntas basicas ao criar uma rota.
+- `dst.address`: Aonde quer ir ? 
+- `Gateway`: De onde quer sair para chegar ao destino
 
-Na tabela de roteamento temos alguns campos como 
-
-    - dst address (Aonde quer chegar ? )
-    - gateway (De onde quer sair ? )
-
+Desta maneira conseguimos criar rotas dentro do microtick como por exemplo, tudo que foi com destino a 0.0.0.0/0(Internet) saia por tal interface.
 
 ## Check gateway
 A cada 10 segundos envia um ICMP echo request(ping) ou uma Solicitação arp request
@@ -365,12 +386,12 @@ o campo distace dentro do ip route é quem define por onde vai passar o trafego.
 Entregar o 201.202.230.254 na operadora 2 do tipo cloud3
 
 ### Exemplo pratico
-[lab](/Microtick/img/LAB.jpeg)
-Digamos que queremos que o computador da filia consiga reconhecer a os computadores do estoque e vice versa.
+[lab](img/LAB.jpeg)
+Digamos que queremos que o computador da filial consiga reconhecer a os computadores do estoque e vice versa.
 
 Podemos criar uma rota que tudo quando for para 192.168.20.0/24 ele irá sair pelo gateway do estoque 10.10.1.2/30 e o contrario tambem a ser feito, tudo que for com destino a 192.168.40.0/24 irá sair pelo gateway 10.10.1.1/30.
 
-Sendo assim acessamos o roteador microtik da fila e fazemos o seguite comando
+Sendo assim acessamos o roteador microtik da fila e fazemos o seguite comando.
 
 ```bash
 ip/route/add dst-address=192.168.20.0./24 gateway=10.10.1.2
@@ -391,14 +412,14 @@ Quando não apontamos o dst-address via cli ele automaticamente detecta que faz 
 
 # Wireless
 
-Microtick router os prevê suporte completo aos padrões de rede wireless IEEE
+microtik router os prevê suporte completo aos padrões de rede wireless IEEE
     - 802.11a/n/ac(5Ghz)
     - 802.11b/g/n(2.4Ghz
     - 802.11ad/(60Ghz) Wireless WIre
 
 ## NV2
 
-    - É um protocolo Wireles propietario da Microtick
+    - É um protocolo Wireles propietario da microtik
     - Beneficios
         - Maior Velocidade
         - Baixa Latência
@@ -417,9 +438,9 @@ Microtick router os prevê suporte completo aos padrões de rede wireless IEEE
 *Depende do modelo RB
 
 
-![alt text](image.png)
+![alt text](img/image.png)
 
-Atualmente pode se ultilizar 3 Aps microtick na mesma rede sem sofrer interferencia de sinal
+Atualmente pode se Utilizar 3 Aps microtik na mesma rede sem sofrer interferencia de sinal
 
 Para ativar de certa maneira o "mesh" colocar os aps com mesmo ssid e senha que ja irá fazer o roming normalmente.
 
@@ -438,14 +459,6 @@ Pontos importantes:
 | **Bridge** | ✅ Sim (somente 1 AP) | ❌ Não | ❌ Não | Links PTP |
 | **Station** | ✅ Sim | ❌ Não | ❌ Não | Cliente Wi-Fi com NAT |
 
-
-
-
-
-
-
-
-
 # firewall
 
 ## Stateless
@@ -453,14 +466,14 @@ Pontos importantes:
 firewall stateles normalmente tende a somente verificar o cabeçalho da requisição e deixar passar, ele não grava em si se aquele pacote ou conexão 
 ja pertence ou esta ativa. Apenas se é analisado o cabeçalho do pacote e ip de destino e se aplica a configurações predefinidas do administrador da rede.
 
-    Vantagens
-        - Mais rapido pois não precisa manter tabelas de conexão
-        - Menos consumo de memoria e CPU
-        - Util para cenarios de alto desempenho como load balances.
+`Vantagens`
+    - Mais rapido pois não precisa manter tabelas de conexão
+    - Menos consumo de memoria e CPU
+    - Util para cenarios de alto desempenho como load balances.
 
-    Desvantagens
-        - Menos seguro, pois não consegue detectar ataques que exploram conexões estabelecidas
-        - Pode permitir trafego não autorizado por não reconhecer conexões estabelecidas.
+`Desvantagens`
+    - Menos seguro, pois não consegue detectar ataques que exploram conexões estabelecidas
+    - Pode permitir trafego não autorizado por não reconhecer conexões estabelecidas.
 
 ## Statefull
 
@@ -468,13 +481,13 @@ Em contrapartida o statefull  mantem o rastreamento das conexões ativas da rede
 a relação dos pacotes com as conexões ja estabelecidas. Ele verifica se o pacote faz parte de uma conexão existente ou se esta tentando estabelecer uma nova conexão
 assim ele consegue permitr ou bloquear pacotes com base no estado da conexão.
 
-    Vantagens
-    -   Maior segurança, pois verifca se o trafego são de conexões legitimas
-    -   Redução de trafego desencesário, ja que não precisa reavaliar pacotes conhecidos
-    -   Permite criar regras mais sofisticadas, como permitir apenas conexões iniciadas de dentro da rede.
+Vantagens
+-  Maior segurança, pois verifca se o trafego são de conexões legitimas
+-  Redução de trafego desencesário, ja que não precisa reavaliar pacotes conhecidos
+-  Permite criar regras mais sofisticadas, como permitir apenas conexões iniciadas de dentro da rede.
 
-    Desvantagens
-    -   Consome mais recurso (Memoria e processamento) por armazenar estados das conexões
+Desvantagens
+-  Consome mais recurso (Memoria e processamento) por armazenar estados das conexões
 
 
 
@@ -482,10 +495,10 @@ assim ele consegue permitr ou bloquear pacotes com base no estado da conexão.
 
 Filter rules é onde criamos nossa regras de firewall para permitir ou bloquear trafego em nossa rede com base em diversos criterios como IP, Porta, protocolo e lan
 Exemplos: 
-    - BLoquear sites: Criar regra para impedir acesso a domínios especificos
-    - Liberar ou bloquear Portas: Definir quais portas podem ser acessadas de dentro da rede.
-    - Proteção LAN: Bloquear acessos indesejados na rede local 
-    - segurança do seu router: Impedir ataques como Brute Force, DDoS e proteger serviços administrativos como SSH e winbox
+- `Bloquear sites`: Criar regra para impedir acesso a domínios específicos
+- `Liberar ou bloquear Portas`: Definir quais portas podem ser acessadas de dentro da rede.
+- `Proteção LAN`: Bloquear acessos indesejados na rede local 
+- `Segurança do seu router`: Impedir ataques como Brute Force, DDoS e proteger serviços administrativos como SSH e winbox
 
 Exemplo de comando:
 ```bash
@@ -497,15 +510,15 @@ Aqui estamos bloqueando o trafego na porta SSH(22)
 
 O Nat é onde podemos modificar os endereços e portas dos pacotes que entram e saem da rede.
 
-`Tipos prncipais de NAT`:
-    -   `Masquerade`: Usado mascarar um IP local para um IP publico
-    -   `Dst-NAT(Destination NAT)`: Redireciona pacotes para um IP e porta especificos
-            - Exemplo:
-                Direcionar trafego da porta 80 para um servidor WEB
-        
-    -   `Src-NAT(Source NAT)`: Altera o ip de origem dos  pacotes
+###  Tipos prncipais de NAT
+- `Masquerade`: Usado mascarar um IP local para um IP publico
+- `Dst-NAT(Destination NAT)`: Redireciona pacotes para um IP e porta específicos
+    - Exemplo:
+     Direcionar trafego da porta 80 para um servidor WEB
+    
+- `Src-NAT(Source NAT)`: Altera o ip de origem dos  pacotes
 
-Exemplo de comando ultilizando src-nat e Masquerade:
+Exemplo de comando Utilizando src-nat e Masquerade:
 ```bash
 /ip firewall nat add chain=srcnat action=masquerade out-interface=ether1
 ```
@@ -529,32 +542,32 @@ Aqui, estamos marcando conexões que entram pela interface WAN1
 
 
 ## Raw
-firewall que age diretamente na interface WAN do microtick antes mesmo de passar pelas regras de Filter, NAT e mangle, ele pode descartar pacotes antes que sejam 
+firewall que age diretamente na interface WAN do microtik antes mesmo de passar pelas regras de Filter, NAT e mangle, ele pode descartar pacotes antes que sejam 
 analisados pelo restante do firewall.
 
 Principais usos: 
-    -   Descartar pacotes antes que chegue no firewall do Microtick, evitando aumento do processamento do equipamento
+    -   Descartar pacotes antes que chegue no firewall do microtik, evitando aumento do processamento do equipamento
     -   Proteção contra ataques DDoS e scans de rede, podendo descartar pacotes maliciosos como SYN fload, Port Scanners e outros ataques comums.
     
 Exemplos de comandos: 
 
-    1. Bloqueio de pacotes de ataques DDoS
-    ```bash
-    /ip firewall raw add chain=prerouting protocol=tcp tcp-flags=syn action=drop
-    ```
-    2. Bloqueia uma lista de ips suspeitos realizando scans de porta
-    ```bash
-    /ip firewall raw add chain=prerouting src-address-list action=drop
-    ```
+1. Bloqueio de pacotes de ataques DDoS
+```bash
+/ip firewall raw add chain=prerouting protocol=tcp tcp-flags=syn action=drop
+```
+2. Bloqueia uma lista de ips suspeitos realizando scans de porta
+```bash
+/ip firewall raw add chain=prerouting src-address-list action=drop
+```
 
 
 ### Tipos de chain
 ![chain](/img/chains.png)
 
 Dentro do conceito de firewall temos três tipos padrões  de fluxos de pacotes.
-    - `Input`: Destinado ao router
-    - `Foward`: Passando pelo router
-    - `Output`: A partir do router
+- `Input`: Destinado ao router
+- `Foward`: Passando pelo router
+- `Output`: A partir do router
 
 
 E dentro do router O.S ele começa a ler as regras de acordo com as chains, então primeiro input, foward ...
@@ -566,19 +579,17 @@ Tudo que se chega ao seu router, seja da internet ou rede local se considera com
 
 #### Foward
 ![chain-forward](/img/chain-foward.png)
-Todo trafego que passe pelo nosso Microtick.
+Todo trafego que passe pelo nosso microtik.
 Exemplo, computador da minha rede local quer se comunicar com a impressora, o dst-addres que o computador manda a requisição é diretamente o IP da minha impressora, porem obrigatoriamente ele tende a passar pelo gateway, isso seria um trafego do tipo foward.
 
 
 #### Output
 Seria todo trafego inicializado a partir de meu router.
 
-
-
 ## Tipos de conexão
 
 ### New
-Pacote ultilizado para abrir uma conexão
+Pacote Utilizado para abrir uma conexão
 
 ### Established
 
@@ -594,47 +605,47 @@ Quando temos uma conexão estabelecida e vamos trocar dados, ele inicializa um n
 
 ## Todas as Actions 
 
-    - Add dst to address list
-        - Adiciona todos os ips de destino passando pelo meu roteador e adicina em uma lista
+- Add dst to address list
+    - Adiciona todos os ips de destino passando pelo meu roteador e adicina em uma lista
 
-    - add src to addres list
-        - Adiciona todos os ips de origem passando pelo meu roteador e adicina em uma lista
+- add src to addres list
+    - Adiciona todos os ips de origem passando pelo meu roteador e adicina em uma lista
 
-    - drop
-        - Ele dropa todos os pacotes
+- drop
+    - Ele dropa todos os pacotes
 
-    - Reject
-        - Como se fosse um drop, porem ele retorna uma mensagem para o pacote dizendo o por que do Reject
-    
-    - accept
-        - Aceita
-    
-    - Jump 
-        - Ele faz um desvio do firewall passando por outras validações especificas de acordo com o cenario.
-    
-    - Log
-        - Gera log de acordo com a regra, Exemplo gere um log sempre que acessarem o facebook
-    
-    - Return
-        - Ele retorna para o fluuxo convencional quando dentro de um Jump
-    
-    - Tarpit
-        - Ele aceita  a conexão SYN porem logo após descarta o pacote, seria como se fosse para enganar.
+- Reject
+    - Como se fosse um drop, porem ele retorna uma mensagem para o pacote dizendo o por que do Reject
+
+- accept
+    - Aceita
+
+- Jump 
+    - Ele faz um desvio do firewall passando por outras validações especificas de acordo com o cenario.
+
+- Log
+    - Gera log de acordo com a regra, Exemplo gere um log sempre que acessarem o facebook
+
+- Return
+    - Ele retorna para o fluuxo convencional quando dentro de um Jump
+
+- Tarpit
+    - Ele aceita  a conexão SYN porem logo após descarta o pacote, seria como se fosse para enganar.
 
 
 
 ## NAT (Network addres translation) 
-Tradutor de endereço de rede, normalmente sempre se ultiliza para entregar um ip publico para todos na rede local.
-ELe basicamente faz a tradução do endereço ip local para o publico. Ultilizamos ele com tudo que for src 0.0.0.0./0 masquerade.
+Tradutor de endereço de rede, normalmente sempre se Utiliza para entregar um ip publico para todos na rede local.
+ELe basicamente faz a tradução do endereço ip local para o publico. Utilizamos ele com tudo que for src 0.0.0.0./0 masquerade.
 ![alt text](img/nat.png)
 
 
 ### Tipos de chain dentro de NAT
-    - srcnat
-        - origem da requisição
-    
-    - dstnat
-        - Destino do request
+- srcnat
+    - origem da requisição
+
+- dstnat
+    - Destino do request
 
     
 ### NAT Masquerade
@@ -645,11 +656,11 @@ Ele faz a tradução do endereço IP local para o IP publico
 
 Em casos de duas operadoras no Link, se recomenda fazer o NAT para dois links de internet com srcNAT.
 ![alt text](img/nat-links.png)
-Ultilizando a chain src-nat sempre quando for com destino a uma das duas interfaces wan, faça uma masquerade passando o IP estatico da operadora, Se for ip estático,se não usar somente masquerade caso for dinamico.
+Utilizando a chain src-nat sempre quando for com destino a uma das duas interfaces wan, faça uma masquerade passando o IP estatico da operadora, Se for ip estático,se não usar somente masquerade caso for dinamico.
 
 ### DST Nat
 
-Podemos fazer por exemplo, tudo que for com destino a 8.8.8.8 no protolo tcp na porta 2000 nossa action dst-nat irá reescrever o ip de destino para 200.201.202.203 (Microtik) na porta 8291. Ou seja, sempre quando eu ir para 8.8.8.8 na porta 2000 eu na verdade estarei acessando o meu segundo microtick.
+Podemos fazer por exemplo, tudo que for com destino a 8.8.8.8 no protolo tcp na porta 2000 nossa action dst-nat irá reescrever o ip de destino para 200.201.202.203 (Microtik) na porta 8291. Ou seja, sempre quando eu ir para 8.8.8.8 na porta 2000 eu na verdade estarei acessando o meu segundo microtik.
 Da mesma maneira podemos fazer o contrário, ou seja tudo que vier em mihas interfaces WAN com protocolo TCP na porta 3389 dst nat para endereço do meu servidor.
 
 
@@ -657,7 +668,7 @@ Da mesma maneira podemos fazer o contrário, ou seja tudo que vier em mihas inte
 
 # QoS
 
-Qos é a performance de uma rede com relação ao usuario, podemos definir priorização de trafeou ou sua limitação.
+Qos é a performance de uma rede com relação ao Usuário, podemos definir priorização de trafeou ou sua limitação.
 Conseguimos fazer controle de banda de acordo com os horarios, aplicando isso para um bloco de IP ou interface.
 
 
@@ -667,21 +678,21 @@ Para definirmos a regra, precisamos passar um target que seria nosso alvo, podem
 ![alt text](img/qos-simples.png))
 
 Definindo:
-    - Target
-    - Horario
-    - E banda para passsar
+- Target
+- Horario
+- E banda para passsar
 
 Indo para aba advanced, temos mais algumas opções da qos
 
 ![alt text](img/qos-advanced.png)
 
 Campos
-    -   Limit At
-        - É onde definimos a banda maxima que pode ser alocada
-    - Priority
-        - Ordem de prioridade na QoS exemplo 8 é a menor prioridade
-    -   Parent, seria a quem essa qos estaria alocalda, como se fosse programação orientada objetos, onde uma QoS se abstrai de outra
-        ![alt text](img/qos-parent.png)
+-   Limit At
+    - É onde definimos a banda maxima que pode ser alocada
+- Priority
+    - Ordem de prioridade na QoS exemplo 8 é a menor prioridade
+-   Parent, seria a quem essa qos estaria alocalda, como se fosse programação orientada objetos, onde uma QoS se abstrai de outra
+    ![alt text](img/qos-parent.png)
 
 
 ## PCQ
@@ -691,25 +702,25 @@ Tipo de enfileiramento de filas, substitui multiplas qos para uma só.
 Exemplo:
 ![alt text](img/qos-pcq-rate0-.png)
 
-Meu Max-LImit=20m indica que o maximo que tenho de banda é 20m ou seja o PCQ irá pegar esses 20m e distribuilos conforme a quantidade de usuarios.
+Meu Max-LImit=20m indica que o maximo que tenho de banda é 20m ou seja o PCQ irá pegar esses 20m e distribuilos conforme a quantidade de Usuários.
 
 
 Agora neste outro cenário temos um PCQ rate setado em 5 oque isso significa ? 
 ![alt text](img/qos-pcq-rate5.png)
 
-Neste ponto temos novamente o max-limit em 20M porem com um PCQ rate de 5M e isso basicamente nos indica que nossaa banda contratada é 20M e que o PCQ rate indica é que basicamente por mais que tenha somente um usuario na empresa logado e precisando de internet o maximo que ele vai consumir sera os 5 megas do PCQ rate.
+Neste ponto temos novamente o max-limit em 20M porem com um PCQ rate de 5M e isso basicamente nos indica que nossaa banda contratada é 20M e que o PCQ rate indica é que basicamente por mais que tenha somente um Usuário na empresa logado e precisando de internet o maximo que ele vai consumir sera os 5 megas do PCQ rate.
 
 Vamos as configurações dentro do winbox
 
 
 ![alt text](img/qos-pcq-winbox.png)
 
-Definimos
-    - Target
-    - Max Limit
+Definimos:
+- Target
+- Max Limit
 
 ![alt text](img/qps-type.pcq.png) 
-Definimos a queue tupe como pcq-upload-default assim temos o primeiro exemplo com o PCQ rate zerado distribuindo a banca com base no numero de usuarios.
+Definimos a queue tupe como pcq-upload-default assim temos o primeiro exemplo com o PCQ rate zerado distribuindo a banca com base no numero de Usuários.
 Para definirmos o Rate do PCQ vamos em > Queues > Queues Types > pcq dowload ou upload
 
 ![alt text](img/qos-pcq-rate-0.png)
@@ -717,40 +728,40 @@ Para definirmos o Rate do PCQ vamos em > Queues > Queues Types > pcq dowload ou 
 Aqui conseguimos definir o rate.
 
 ## Burst
-Usado para permitir velocidade mais alta por um curto periodo de tempo, muito ultilizado em provcedores para entregar para o cliente a sensação de estar recebendo mais que o contratado.
+Usado para permitir velocidade mais alta por um curto periodo de tempo, muito utilizado em provcedores para entregar para o cliente a sensação de estar recebendo mais que o contratado.
 
 ![alt text](img/qos-burst.png)
 
 Para interpretarmos a imagem, temos que entender algumas destas linhas.
-    - Burst Limit (Linha Vermelha)
-        - Limite de banda que o cliente pode alcançar com burst ativado
+- Burst Limit (Linha Vermelha)
+    - Limite de banda que o cliente pode alcançar com burst ativado
 
-    - Max Limit (Linha azul)
-        - Banda real contratada pelo cliente
-    
-    - Limit At (Linha sinza)
-        - Banda minima garantida ao cliente
+- Max Limit (Linha azul)
+    - Banda real contratada pelo cliente
 
-    - Average rate(Linha Marrom)
-        - Consumo médio do cliente
+- Limit At (Linha sinza)
+    - Banda minima garantida ao cliente
 
-    - Burst Threshold (Linha verde)
-        - Define o limite que burst pode ficar ativo
+- Average rate(Linha Marrom)
+    - Consumo médio do cliente
+
+- Burst Threshold (Linha verde)
+    - Define o limite que burst pode ficar ativo
 
 
 Vamos citar um exemplo de um cliente.
 
-    - Cliente tem contratado 2MB
-        - Max Limit = 2MB
-    
-    - O Maximo que ele pode bater é 4MB com burst
-        - Burst = 4MB
+- Cliente tem contratado 2MB
+    - Max Limit = 2MB
 
-    - O Maximo que ele pode ultilizar o bonus é por 6 segundos
-        - Burst threshould = 6s
+- O Maximo que ele pode bater é 4MB com burst
+    - Burst = 4MB
+
+- O Maximo que ele pode utilizar o bonus é por 6 segundos
+    - Burst threshould = 6s
 
     
-Neste senário, quando o cliente começar a navegar na internet, no inicio terá um carregamento mais rapido da página pois estará ultilizando o Burst quando o consumo médio do cliente (Average rate) encostar no Burst Threshold o burst será desligado e o consumo do cliente voltara para o Max limit. O Burst fica sendo ativado e desativado a qualquer momento, então para navegações WEB attravés do protocolo HTTP ele da para o cliente uma sensação de fluidez melhor, pois sempre ao carregar a pagina ele bate no burst e ao navegar na pagina o burst se desliga, tornando o primeiro carregamento da pagina muito bom. Isso para provedores é muito ultilizado para fazer testes de velocidade, o burst é ativado ao realizar o teste batendo um pouco a mais acima do contratado, dando ao cliente uma sensação de estar recebendo mais do que paga pelo produto fazendo assim uma entrega de valor muito efetiva ao cliente final.
+Neste senário, quando o cliente começar a navegar na internet, no inicio terá um carregamento mais rapido da página pois estará utilizando o Burst quando o consumo médio do cliente (Average rate) encostar no Burst Threshold o burst será desligado e o consumo do cliente voltara para o Max limit. O Burst fica sendo ativado e desativado a qualquer momento, então para navegações WEB attravés do protocolo HTTP ele da para o cliente uma sensação de fluidez melhor, pois sempre ao carregar a pagina ele bate no burst e ao navegar na pagina o burst se desliga, tornando o primeiro carregamento da pagina muito bom. Isso para provedores é muito utilizado para fazer testes de velocidade, o burst é ativado ao realizar o teste batendo um pouco a mais acima do contratado, dando ao cliente uma sensação de estar recebendo mais do que paga pelo produto fazendo assim uma entrega de valor muito efetiva ao cliente final.
 
 
 Dentro do Router OS para sua configuração, podemos definiar.
@@ -758,11 +769,11 @@ Dentro do Router OS para sua configuração, podemos definiar.
 ![alt text](img/qos-burst-conf.png)
 
 Definimos nosso:
-    - Target (Alvo)
-    - Max Limit
-    - Burst Limit
-    - Burst Threshold
-    - Bust Time
+- Target (Alvo)
+- Max Limit
+- Burst Limit
+- Burst Threshold
+- Bust Time
 
 Depois é soment ir na area de trafic e validar o aumento do traćfico batendo com o burst
 
@@ -786,9 +797,9 @@ Deve seguir as configurações:
     - Name
         - Nome do profile
     - Local Address
-        - Ultiliza comunicação /32 colocar um ip fora da pool de ip
+        - Utiliza comunicação /32 colocar um ip fora da pool de ip
     - Remote address
-        - Ip que o cliente pode ultilizar do seu lado: Passar a pool de ip criado
+        - Ip que o cliente pode utilizar do seu lado: Passar a pool de ip criado
     - DNS Server
         - DNS que será entregue no ato da conexão
     - Protocols
@@ -809,21 +820,21 @@ Para isso vamos criar os proximos profile
 - Name: Profile-10Megas
 - Limits
     - Session Timeout: Tempo em que o cliente ficara conectado com mesmo IP
-    - Idle Timeout: Se ficar ocioso por duas horas ou mais sem ultilizar o tunel, desconecta o cliente.
+    - Idle Timeout: Se ficar ocioso por duas horas ou mais sem utilizar o tunel, desconecta o cliente.
     - Rate Limit(RX/TX): Limita a banda do cliente 10m dowload / 10m upload
-    - Only One: Caso cliente conectado com aquele usuario e senha, não será possivel mais fazer login com aquele usuario no servidor.
+    - Only One: Caso cliente conectado com aquele Usuário e senha, não será possivel mais fazer login com aquele usuário no servidor.
 
-4. Criar o Secrets, usuario e senhas PPPOE
-Normalmente é padrão ver servidores radius que contenha usuarios e senha dos PPPOE dentro do sistema e depois somente fazer a conexão do concentrador com radius.
-Porem entretanto toda via, não é necessario para criação de um PPPOE server, na aba de secrets podemos criar usuario e senhas pppoe.
+4. Criar o Secrets, usuário e senhas PPPOE
+Normalmente é padrão ver servidores radius que contenha usuários e senha dos PPPOE dentro do sistema e depois somente fazer a conexão do concentrador com radius.
+Porem entretanto toda via, não é necessario para criação de um PPPOE server, na aba de secrets podemos criar usuário e senhas pppoe.
 
 Para criar a senha basta ir em PPP > Secrets
 
 ![alt text](img/secrets.png)
 
-- Name: nome do usuario
+- Name: nome do usuário
 - Password: Senha
-- Service: Indica que esse usuario e senha será ultilizado somente para o serviço de pppoe
+- Service: Indica que esse usuário e senha será utilizado somente para o serviço de pppoe
 - Caler ID: Faz o controle pelo MAC do roteador
 - Profile: Passamos o plano do cliente
 
@@ -836,7 +847,7 @@ Aba > PPP > PPPoE Server >
 - Max MTU: Define o tamanho do pacote de transmissão (Deve ser analisado de acordo com sua infraestrutura)
 - Max MRU: Define o tamando do pacorte de recepção (Deve ser analisado de acordo com sua infraestrutura)
 - Default Profile: Passamos o profile criado para nosso servidor
-- Keepalive: De quanto em quanto tempo o servidor irá derrubar a conexão do cliente em caso de não ultilização
+- Keepalive: De quanto em quanto tempo o servidor irá derrubar a conexão do cliente em caso de não utilização
 - Max sessions: Estou definindo que o maximo de conexão no meu servidor  PPPoE é 2000
 - Autentication: Protocolos de comunicação durante o tunel, é bom desmarcar o pap pelo fato de não ser criptografado.
 
@@ -853,7 +864,7 @@ para criar PPPOE client ir em PPP > interface > adicionar PPPoE client
 - Interface: Interface a qual vai receber conexão
 - Dial Out:
 ![alt text](img/dial-out.png)
-- User: Usuario PPPoE
+- User: usuário PPPoE
 - Password: senha PPPoE
 - Profile: default
 - Use pear DNS: Recebera endereço DNS do servidor PPPoE
@@ -868,7 +879,7 @@ PPP - > Acrtive Connections
 Se você for em Queues você tambem verá a qos dinamica criada através do profile de controle de banda.
 
 # PPTP
-Não muito recomendado para conexões PPTP devido sua insegurança do protocolo, ele ultiliza como protocolo
+Não muito recomendado para conexões PPTP devido sua insegurança do protocolo, ele utiliza como protocolo
 - Protocolo: TCP
 - Protocolo de codigo: 47 GRE
 - Porta 1723
@@ -891,19 +902,19 @@ Vamos definir:
     - Name: Nome
     - Password: senha
     - service: pptp
-    - Profile: podemos ultilizar padrão
+    - Profile: podemos utilizar padrão
     - Local address: será o meu ponto de conexão do lado do servidor
     - Remote addrss: sera o ip de conexão da outra ponta dentro do tunel
 
-Logo após somente irmos no outro microtick e configurarmos o nosso PPTP client.
+Logo após somente irmos no outro microtik e configurarmos o nosso PPTP client.
 Indo em PPP > interfaces > PPTP client
 ![alt text](img/pptp-client.png)
 
 Vamos precisar definir:
     - Connect To:  ip de destino da conexão
-    - User: usuario
+    - User: usuário
     - Password: senha
-    - User pear DNS: Irá ultilizar DNS da conexão
+    - User pear DNS: Irá utilizar DNS da conexão
 
 Pronto nossa conexão está estabelecida, basta configurar nossas tabelas de rotas para tudo que for a destino de uma rede local seja da matriz ou filial, sair por seu gateway correspondente. 
 
@@ -922,7 +933,7 @@ Ele irá ficar pingando o dispositivo frequentemente de acordo com o tempo desej
 ![alt text](/img/netwatch-simple.png)
 
 Porem o Netwatch não é simplesmente isso, conseguimos fazer ações caso venha uma eventual queda do monitoramento trabalhando como um failouver.
-Vou dar um exemplo, no nosso cenário do laboratorio em nossa Matriz temos um microtick com dois links de internet.
+Vou dar um exemplo, no nosso cenário do laboratorio em nossa Matriz temos um Mircrotik com dois links de internet.
 
 ![alt text](img/netwatch-matriz.png)
 
@@ -955,7 +966,7 @@ Como pode ver ele executa um script caso venha uma eventual queda deste monitora
 ```bash
 /ip route disable [find comment=OPERADORA1]  ## Irá desabilitar a rota que estiver com o comentario "OPERADORA1"
 log erro "O LINK OPERADORA 1 CAIU" ## Irá gerar um log no MK caso venha cair
-/tool e-mail send to "seuemail@dominio.com" subject="O link da operadora 1 caiu" ### Como configuramos o email acima, podemos ultilizalo para fazer envios de email.
+/tool e-mail send to "seuemail@dominio.com" subject="O link da operadora 1 caiu" ### Como configuramos o email acima, podemos utilizalo para fazer envios de email.
 ```
 
 Da mesma maneira podemos colocar o Script na config para UP caso venha subir o link.
@@ -964,9 +975,9 @@ Como pode ver ele executa um script caso venha uma eventual queda deste monitora
 ```bash
 /ip route disable [find comment=OPERADORA1]  ## Irá Habilitar a rota que estiver com o comentario "OPERADORA1"
 log erro "O LINK OPERADORA 1 VOLTOU" ## Irá gerar um log no MK caso venha voltar
-/tool e-mail send to "seuemail@dominio.com" subject="O link da operadora 1 Voltou" ### Como configuramos o email acima, podemos ultilizalo para fazer envios de email.
+/tool e-mail send to "seuemail@dominio.com" subject="O link da operadora 1 Voltou" ### Como configuramos o email acima, podemos utilizalo para fazer envios de email.
 ```
-isso é apenas um demonstração de como pode ser ultilizado esta ferramenta a prol de um administrador de rede, como esta aberta a script podemos controlar melhor um failover ou um failback, alterando configurações de VLAN, DHCP, interfaces oque vier a sua necessidade.
+isso é apenas um demonstração de como pode ser utilizado esta ferramenta a prol de um administrador de rede, como esta aberta a script podemos controlar melhor um failover ou um failback, alterando configurações de VLAN, DHCP, interfaces oque vier a sua necessidade.
 
 ## Ping
 Por mais que pareça uma ferramenta simples conseguimos ter algumas funcionalidades avançadas.
@@ -993,11 +1004,11 @@ Como ja conhecemos, traceroute ele mapeia a rota até um destino, dentro do micr
 ![alt text](img/tools-traceroute.png)
 
 ## Profile
-Esta funcionalidade nos permite ver o desempenho e ultilização do processador do nosso equipamento
+Esta funcionalidade nos permite ver o desempenho e utilização do processador do nosso equipamento
 
 ![alt text](img/tools-profile.png)
 
-Conseguimos monitorar como esta ultilização de todos os nossos processadores.Conseguimos tambem selecionar um nucleo e ver quais serviços estão ocupando este nucleo.
+Conseguimos monitorar como esta utilização de todos os nossos processadores.Conseguimos tambem selecionar um nucleo e ver quais serviços estão ocupando este nucleo.
 
 ![alt text](img/tools-profile-cpu.png)
 
@@ -1012,12 +1023,12 @@ Conseguimos monitarar trafego de diversas maneiras através do Torch, temos filt
 - Interface
 - Collect
     - Src.address IPV4 ou IPV6: Ver o trafego originado de determinado IP
-    - Dst.address IPV4 ou IPV6: Filtrar por requisições de destinos especificos
+    - Dst.address IPV4 ou IPV6: Filtrar por requisições de destinos específicos
     - Port: Filtrar trafico a partir de portas TCP
     - Protocol: Ver trafego de especico protocolo
     - Vlan id: Trafego de determinada Vlan
 
-A partir desta ferramenta podemos ter uma abrangência muito grande de como o trafego esta sendo passado pela rede, seria uma ferramenta similar ao que se tem do wireshark, porem como ferramenta dentro do software routeros. Imagine que queria ver o trafego que esta sendo navegado na sua rede, onde esta tendo maior consumo de internet e como ou para onde esta indo este consumo. Imagine que queira ver quais o quanto de trafego passe para determinado site em sua rede. Ferramenta muito ultilizada para diagnoticar uma rede e como os dados estão sendo trafegados. Muitos casos de uso para por exemplo analistas de seguranças e administradores de rede.
+A partir desta ferramenta podemos ter uma abrangência muito grande de como o trafego esta sendo passado pela rede, seria uma ferramenta similar ao que se tem do wireshark, porem como ferramenta dentro do software routeros. Imagine que queria ver o trafego que esta sendo navegado na sua rede, onde esta tendo maior consumo de internet e como ou para onde esta indo este consumo. Imagine que queira ver quais o quanto de trafego passe para determinado site em sua rede. Ferramenta muito utilizada para diagnoticar uma rede e como os dados estão sendo trafegados. Muitos casos de uso para por exemplo analistas de seguranças e administradores de rede.
 
 ## Graph
 Ferramenta de graficos do prórpio router os a partir dele conseguimos fazer o monitoramento de interfaces dentro próprio router OS.
