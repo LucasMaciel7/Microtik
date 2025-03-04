@@ -58,7 +58,7 @@ Este repositório contém todas as minhas anotações retiradas do curso **MTCNA
     - [PPPoE Server](#servidor-pppoe)
     - [PPTP VPN](#pptp)
 10. [🔧 Ferramentas Diversas](#ferramentas-diversas)
-    - [Monitoramento e Alertas](#netwatch)
+    - [Monitoramento e Alertas com Netwatch](#netwatch)
     - [Envio de Logs por E-mail](#tools-email)
     - [Comandos de Diagnóstico](#ping)
     - [Traceroute e Debug](#traceroute)
