@@ -495,56 +495,6 @@ ip/route add gateway=10.10.1.1/30
 ```
 Quando não apontamos o dst-address via cli ele automaticamente detecta que faz parte de uma rota default e que o destino é 0.0.0.0/0 que será a internet.
 
-
-# Wireless
-
-microtik router os prevê suporte completo aos padrões de rede wireless IEEE
-    - 802.11a/n/ac(5Ghz)
-    - 802.11b/g/n(2.4Ghz
-    - 802.11ad/(60Ghz) Wireless WIre
-
-## NV2
-
-    - É um protocolo Wireles propietario da microtik
-    - Beneficios
-        - Maior Velocidade
-        - Baixa Latência
-    - TDMA - TIma DIvision MUltiple Access
-    - O NV2 não aceita Birtual AP e o limite é de 511
-
-| **Padrão IEEE** | **Frequência** | **Velocidade**        |
-|----------------|--------------|----------------------|
-| 802.11a       | 5GHz         | 54Mbps              |
-| 802.11b       | 2.4GHz       | 11Mbps              |
-| 802.11g       | 2.4GHz       | 54Mbps              |
-| 802.11n       | 2.4 e 5GHz   | Até 450 Mbps*       |
-| 802.11ac      | 5GHz         | Até 1300 Mbps*      |
-| 802.11ad      | 60GHz        | 2 Gbps              |
-
-*Depende do modelo RB
-
-
-![alt text](img/image.png)
-
-Atualmente pode se Utilizar 3 Aps microtik na mesma rede sem sofrer interferencia de sinal
-
-Para ativar de certa maneira o "mesh" colocar os aps com mesmo ssid e senha que ja irá fazer o roming normalmente.
-
-Pontos importantes:
-- Quanto maior a largura do canal
-    - Menor numero de numero de canais
-    - Mais vulneravel a interferências
-    - Diminuiu a a potencia do sinal a logas distancias
-    
-
-## Modes Wifi
-| Modo            | Se conecta a um AP | Atua como AP | Passa múltiplos MACs? | Uso comum                     |
-|---------------|----------------|-----------|----------------|-----------------------------|
-| **Station Bridge** | ✅ Sim | ❌ Não | ✅ Sim | Cliente Wi-Fi transparente |
-| **AP Bridge** | ❌ Não | ✅ Sim | ✅ Sim | Roteador principal Wi-Fi |
-| **Bridge** | ✅ Sim (somente 1 AP) | ❌ Não | ❌ Não | Links PTP |
-| **Station** | ✅ Sim | ❌ Não | ❌ Não | Cliente Wi-Fi com NAT |
-
 # firewall
 
 ## Stateless
