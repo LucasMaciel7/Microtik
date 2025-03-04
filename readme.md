@@ -24,7 +24,7 @@ Este repositório contém todas as minhas anotações retiradas do curso **MTCNA
 
 ## 📌 Sumário
 
-1. [📘 Informações do Curso](#-informacoes-do-curso)
+1. [📘 Informações do Curso](#-Informacoes-do-curso)
 2. [📸 Laboratório](#-laboratorio)
 3. [⌨️ CLI MikroTik](#-cli-mikrotik)
    - [Atalhos no CLI](#atalhos-no-cli)
