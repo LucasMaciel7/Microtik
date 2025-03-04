@@ -307,6 +307,34 @@ Botão de reset tem 4 funções adicionadas da seguinte forma
     - 15 seg ou mais reinstalação via Netinstall
 
 
+# DHCP Server
+
+Para se criar um DHCP server no Microtik podemos fazer via CLI ou através do winbox.
+
+CLI:
+
+1. Criar uma pool de IP
+```bash
+/ip pool add name=dhcp_pool ranges=192.168.1.100-192.168.1.200
+```
+2. Criar DHCP server
+``` bash
+/ip dhcp-server add name=dhcp_srv interface=ether2 address-pool=dhcp_pool disabled=no
+```
+
+4. Configurar a rede a ser entregue do DHCP
+```bash
+/ip dhcp-server network add address=192.168.1.0/24 gateway=192.168.1.1 dns-server=8.8.8.8,8.8.4.4
+
+```
+
+Feito a criação do nosso DHCP server vamos precisar somente verificar os dispositivos dentro do nosso DHCP conectadas
+```bash
+/ip dhcp-server lease print
+```
+
+Ou podemos fazer pela versão simples do Winbox na Aba de DHCP server seguindo as etapas do DHCP Setup.
+
 
 
 # DHCP Client
@@ -450,10 +478,10 @@ Atualmente pode se Utilizar 3 Aps microtik na mesma rede sem sofrer interferenci
 Para ativar de certa maneira o "mesh" colocar os aps com mesmo ssid e senha que ja irá fazer o roming normalmente.
 
 Pontos importantes:
-    - Quanto maior a largura do canal
-        - Menor numero de numero de canais
-        - Mais vulneravel a interferências
-        - Diminuiu a a potencia do sinal a logas distancias
+- Quanto maior a largura do canal
+    - Menor numero de numero de canais
+    - Mais vulneravel a interferências
+    - Diminuiu a a potencia do sinal a logas distancias
     
 
 ## Modes Wifi
@@ -472,13 +500,13 @@ firewall stateles normalmente tende a somente verificar o cabeçalho da requisi�
 ja pertence ou esta ativa. Apenas se é analisado o cabeçalho do pacote e ip de destino e se aplica a configurações predefinidas do administrador da rede.
 
 `Vantagens`
-    - Mais rapido pois não precisa manter tabelas de conexão
-    - Menos consumo de memoria e CPU
-    - Util para cenarios de alto desempenho como load balances.
+- Mais rapido pois não precisa manter tabelas de conexão
+- Menos consumo de memoria e CPU
+- Util para cenarios de alto desempenho como load balances.
 
 `Desvantagens`
-    - Menos seguro, pois não consegue detectar ataques que exploram conexões estabelecidas
-    - Pode permitir trafego não autorizado por não reconhecer conexões estabelecidas.
+- Menos seguro, pois não consegue detectar ataques que exploram conexões estabelecidas
+- Pode permitir trafego não autorizado por não reconhecer conexões estabelecidas.
 
 ## Statefull
 
