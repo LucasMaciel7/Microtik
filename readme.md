@@ -345,7 +345,7 @@ Como executar o export
 export file=tudo
 ```
 
-
+---
 # Botão de Reset
 Botão de reset tem 4 funções adicionadas da seguinte forma
 
@@ -356,8 +356,9 @@ Botão de reset tem 4 funções adicionadas da seguinte forma
     - 5 seg resert do equipamento
     - 10 seg ativa o modo CAPS(A parte de WI-FI irá ser administrada por outro equipamento na rede )
     - 15 seg ou mais reinstalação via Netinstall
+---
 
-
+---
 # DHCP Server
 
 Para se criar um DHCP server no Microtik podemos fazer via CLI ou através do winbox.
@@ -407,6 +408,7 @@ Comando CLI para criar dhcp client:
 /ip dhcp-client add interface=<nome_da_interface> disabled=no
 ```
 
+---
 
 # Bridge
 
