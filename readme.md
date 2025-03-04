@@ -1,24 +1,23 @@
-# Estudos em Microtik para certificação MTCNA
+# 📡 Estudos em MikroTik - Certificação MTCNA
 
-Curso distribuido através da six core, ministrado pelo instrutor profissional Leonardo Vieira.
-pela empresa: https://www.linkedin.com/company/sixcoretreinamentos/posts/?feedView=all
-https://www.linkedin.com/in/albuquerqueleonardo/
+Este repositório contém todas as minhas anotações retiradas do curso **MTCNA V7** (20 horas) oferecido pela **SixCore Treinamentos**, ministrado pelo instrutor profissional **Leonardo Vieira**.
 
-Gostaria através deste conteudo descrito mostrar todas as minhas anotações retiradas do curso de 20 horas MTCNA V7 da empresa SixCore, demonstrar minhas habilidades recem adiquiridas do curso.
+---
 
+## 📘 Informações do Curso
 
+- **Empresa:** [SixCore Treinamentos](https://www.linkedin.com/company/sixcoretreinamentos/posts/?feedView=all)
+- **Instrutor:** [Leonardo Vieira](https://www.linkedin.com/in/albuquerqueleonardo/)
+- **Carga horária:** 20 horas
+- **Versão do curso:** MTCNA V7
 
+---
 
+## Laboratório
 
+![LAB de Estudos](img/LAB.jpeg)
 
-
-
-
-
-
-
-
-
+---
 
 # CLI MikroTik
 
