@@ -289,7 +289,7 @@ set enabled=yes
 
 ```
 
-Como executar o c
+Como executar o export
 ```bash
 export file=tudo
 ```
@@ -313,23 +313,28 @@ Botão de reset tem 4 funções adicionadas da seguinte forma
 Quando o algum dispositivo chega e começa a procurar por IPs ele faz o processo que chamaos de DORA
 DORA.
 
-D = Discover - Dispositivo fazendo descoberta de rede no loca
-O = Offer - Oferta do servidor DHCP para o cliente
-R = Request - Solicitação de aceitação do servidor DHCP
-A = Ack - COnfirmação do DHCP que foi entregue o Ip
+- D = Discover - Dispositivo fazendo descoberta de rede no loca 
+- O = Offer - Oferta do servidor DHCP para o cliente
+- R = Request - Solicitação de aceitação do servidor DHCP
+- A = Ack - COnfirmação do DHCP que foi entregue o Ip
 
 
 Quando ele faz a descoberta de rede, o dispositivo ele procura servidores DHCP na rede multicast e o servidor DHCP sempre responde na unicast.
 
-Colocar o codigo de criação do DHCP
+![alt text](img/dhcp-dora.jpeg)
+
+Comando CLI para criar dhcp client:
+```bash
+/ip dhcp-client add interface=<nome_da_interface> disabled=no
+```
 
 
 # Bridge
 
 - Bridge é um dispositivo de camada 2 osi
-- São dispositvos transparentes
+- São interfaces transparentes
 - Um switch de rede é uma bridge com multiplas portas
-- Ao criar uma Brifge ela usa o mac address da porta selecionada
+- Ao criar uma Bridge ela usa o mac address da porta selecionada
 
 
 ## Hardware offload
@@ -369,7 +374,7 @@ Aqui está todas as flags de roteamento
     -   H - hw-offloaded 
     -   ecmp - Equal-Cost Multi-Path
 
-ip > routes
+`ip > routes`
 Conceito de roteamento do winbox é muito simples, temos que responder duas perguntas basicas ao criar uma rota.
 - `dst.address`: Aonde quer ir ? 
 - `Gateway`: De onde quer sair para chegar ao destino
