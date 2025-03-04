@@ -233,8 +233,8 @@ Dentro do microtik deve se sempre subir o backup no mesmo tipo de equipamento
 
 ### Tipos de backup
 
-    - .bkp: Clona MAC das interfaces, usuários e senhas de ROS
-    - RSC: Compatível com Hardware diferentes, pode fazer backup e restore por partes do conteudo.
+- .bkp: Clona MAC das interfaces, usuários e senhas de ROS
+- RSC: Compatível com Hardware diferentes, pode fazer backup e restore por partes do conteudo.
 
 Comando para gerar um bkp
 ```bash
@@ -391,7 +391,7 @@ o campo distace dentro do ip route é quem define por onde vai passar o trafego.
 Entregar o 201.202.230.254 na operadora 2 do tipo cloud3
 
 ### Exemplo pratico
-[lab](img/LAB.jpeg)
+![lab](img/LAB.jpeg)
 Digamos que queremos que o computador da filial consiga reconhecer a os computadores do estoque e vice versa.
 
 Podemos criar uma rota que tudo quando for para 192.168.20.0/24 ele irá sair pelo gateway do estoque 10.10.1.2/30 e o contrario tambem a ser feito, tudo que for com destino a 192.168.40.0/24 irá sair pelo gateway 10.10.1.1/30.
@@ -533,9 +533,9 @@ Tudo que vier da minha rede local, saem pela interface ether 1 para que todos co
 ## Mangle
 O Mangle permite manipular pacotes para controle de trafego avançado, marcação de conexões e implementação de balanceamento de carga.
 Pricipais usos:
-    -   `Load Balances`: Distribuir tráfego entre multiplos links de internet.
-    -   `Marcaçoes de pacotes e conexões`: Para aplicar regras especificas baseado no trafego
-    -   `Alterações de pacotes TTL(Time to live)`: Impedir que provedores detectem roteamento de internet compartilhado
+-   `Load Balances`: Distribuir tráfego entre multiplos links de internet.
+-   `Marcaçoes de pacotes e conexões`: Para aplicar regras especificas baseado no trafego
+-   `Alterações de pacotes TTL(Time to live)`: Impedir que provedores detectem roteamento de internet compartilhado
 
 Exemplo de marcação de pacote para load balance:
 
@@ -551,8 +551,8 @@ firewall que age diretamente na interface WAN do microtik antes mesmo de passar 
 analisados pelo restante do firewall.
 
 Principais usos: 
-    -   Descartar pacotes antes que chegue no firewall do microtik, evitando aumento do processamento do equipamento
-    -   Proteção contra ataques DDoS e scans de rede, podendo descartar pacotes maliciosos como SYN fload, Port Scanners e outros ataques comums.
+-   Descartar pacotes antes que chegue no firewall do microtik, evitando aumento do processamento do equipamento
+-   Proteção contra ataques DDoS e scans de rede, podendo descartar pacotes maliciosos como SYN fload, Port Scanners e outros ataques comums.
     
 Exemplos de comandos: 
 
@@ -593,20 +593,13 @@ Seria todo trafego inicializado a partir de meu router.
 
 ## Tipos de conexão
 
-### New
-Pacote Utilizado para abrir uma conexão
+- `New`: Pacote Utilizado para abrir uma conexão
 
-### Established
+- `Established`: Estabilizado a conexão
 
-Estabilizado a conexão
+- `invalid`: Todo pacote que não esta abrindo uma conexão, e ele não esta em nenhuma conexão estabelecida.
 
-### invalid
-Todo pacote que não esta abrindo uma conexão, e ele não esta em nenhuma conexão estabelecida.
-
-### Related
-Quando temos uma conexão estabelecida e vamos trocar dados, ele inicializa um novo tipo de conexão 
-
-
+- `Related`: Quando temos uma conexão estabelecida e vamos trocar dados, ele inicializa um novo tipo de conexão 
 
 ## Todas as Actions 
 
@@ -641,7 +634,8 @@ Quando temos uma conexão estabelecida e vamos trocar dados, ele inicializa um n
 
 ## NAT (Network addres translation) 
 Tradutor de endereço de rede, normalmente sempre se Utiliza para entregar um ip publico para todos na rede local.
-ELe basicamente faz a tradução do endereço ip local para o publico. Utilizamos ele com tudo que for src 0.0.0.0./0 masquerade.
+ELe basicamente faz a tradução do endereço ip local para o publico. Utilizamos ele com tudo que for src 0.0.0.0./0 masquerade.<br>
+
 ![alt text](img/nat.png)
 
 
@@ -655,11 +649,11 @@ ELe basicamente faz a tradução do endereço ip local para o publico. Utilizamo
     
 ### NAT Masquerade
 
-Ele faz a tradução do endereço IP local para o IP publico
+Ele faz a tradução do endereço IP local para o IP publico<br>
 ![alt text](img/nat-masquerade.png)
 
 
-Em casos de duas operadoras no Link, se recomenda fazer o NAT para dois links de internet com srcNAT.
+Em casos de duas operadoras no Link, se recomenda fazer o NAT para dois links de internet com srcNAT.<br>
 ![alt text](img/nat-links.png)
 Utilizando a chain src-nat sempre quando for com destino a uma das duas interfaces wan, faça uma masquerade passando o IP estatico da operadora, Se for ip estático,se não usar somente masquerade caso for dinamico.
 
@@ -697,14 +691,14 @@ Campos
 - Priority
     - Ordem de prioridade na QoS exemplo 8 é a menor prioridade
 -   Parent, seria a quem essa qos estaria alocalda, como se fosse programação orientada objetos, onde uma QoS se abstrai de outra
-    ![alt text](img/qos-parent.png)
+![alt text](img/qos-parent.png)
 
 
 ## PCQ
 
 Tipo de enfileiramento de filas, substitui multiplas qos para uma só.
 
-Exemplo:
+Exemplo:<br>
 ![alt text](img/qos-pcq-rate0-.png)
 
 Meu Max-LImit=20m indica que o maximo que tenho de banda é 20m ou seja o PCQ irá pegar esses 20m e distribuilos conforme a quantidade de Usuários.
@@ -791,7 +785,7 @@ Depois é soment ir na area de trafic e validar o aumento do traćfico batendo c
 Primeiro passo para cria um servidor PPPOE
 
 1. Criar uma Pool de ip
-Ip > pool > Criar
+`Ip > pool > Criar`
 ![alt text](img/ip-pool.png)
 
 2. Criar Profile para servidor PPPOE
@@ -820,8 +814,10 @@ Deve seguir as configurações:
 Beleza, criamos o profile para nosso servidor pppoe, precisamos criar o profile do lado do cliente de acordo com cada plano de velocidade.
 Para isso vamos criar os proximos profile
 
-3. Criar profile dos planos:
-![alt text](img/profile-pan10m.png) - > ![alt text](img/profile-limits.png)
+3. Criar profile dos planos:<br>
+<img src="img/profile-pan10m.png" alt="Profile 10M" width="400"> 
+<img src="img/profile-limits.png" alt="Profile Limits" width="400">
+
 - Name: Profile-10Megas
 - Limits
     - Session Timeout: Tempo em que o cliente ficara conectado com mesmo IP
@@ -867,7 +863,7 @@ para criar PPPOE client ir em PPP > interface > adicionar PPPoE client
 
 - Name: Nome da interface
 - Interface: Interface a qual vai receber conexão
-- Dial Out:
+### Dial Out:<br>
 ![alt text](img/dial-out.png)
 - User: usuário PPPoE
 - Password: senha PPPoE
@@ -904,22 +900,22 @@ Logo após precisamos criar um Secret para conexão estabelecer.
 ![alt text](img/pptp-server-secret.png)
 
 Vamos definir:
-    - Name: Nome
-    - Password: senha
-    - service: pptp
-    - Profile: podemos utilizar padrão
-    - Local address: será o meu ponto de conexão do lado do servidor
-    - Remote addrss: sera o ip de conexão da outra ponta dentro do tunel
+- Name: Nome
+- Password: senha
+- service: pptp
+- Profile: podemos utilizar padrão
+- Local address: será o meu ponto de conexão do lado do servidor
+- Remote addrss: sera o ip de conexão da outra ponta dentro do tunel
 
 Logo após somente irmos no outro microtik e configurarmos o nosso PPTP client.
 Indo em PPP > interfaces > PPTP client
 ![alt text](img/pptp-client.png)
 
 Vamos precisar definir:
-    - Connect To:  ip de destino da conexão
-    - User: usuário
-    - Password: senha
-    - User pear DNS: Irá utilizar DNS da conexão
+- Connect To:  ip de destino da conexão
+- User: usuário
+- Password: senha
+- User pear DNS: Irá utilizar DNS da conexão
 
 Pronto nossa conexão está estabelecida, basta configurar nossas tabelas de rotas para tudo que for a destino de uma rede local seja da matriz ou filial, sair por seu gateway correspondente. 
 
@@ -927,14 +923,14 @@ Pronto nossa conexão está estabelecida, basta configurar nossas tabelas de rot
 # Ferramentas Diversas
 
 ## Tools Email
-É possivel colocar o microtik para se conectar com um servidor de E-mail para envio de logs e alertas, basta ir em Tools > Email
+É possivel colocar o microtik para se conectar com um servidor de E-mail para envio de logs e alertas, basta ir em Tools > Email <br>
 ![alt text](img/tools-email.png)
 Após preencher os campos, basta configurar os alertas para mandar E-mail como por exemplo fail over em casos de queda de um link, ou por exemplo o envio de um backup.
 
 
 ## Netwatch 
 Essa ferramenta conseguimos fazer um monitoramento de algum serviço, pode ser um relogio de ponto, servidor, dns, etc.
-Ele irá ficar pingando o dispositivo frequentemente de acordo com o tempo desejado.
+Ele irá ficar pingando o dispositivo frequentemente de acordo com o tempo desejado.<br>
 ![alt text](/img/netwatch-simple.png)
 
 Porem o Netwatch não é simplesmente isso, conseguimos fazer ações caso venha uma eventual queda do monitoramento trabalhando como um failouver.
@@ -1080,4 +1076,4 @@ Caso queira baixar as configurações do equipamento para enviar para algum cons
 - https://mikrotik.com/client/supout
 
 Logo após é só fazer o upload no site e pronto.
-![alt text](image.png)
+![alt text](img/tools-suport.png)
