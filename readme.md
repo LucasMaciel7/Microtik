@@ -19,6 +19,62 @@ Este repositório contém todas as minhas anotações retiradas do curso **MTCNA
 
 ---
 
+
+
+
+## 📌 Sumário
+
+1. [📘 Informações do Curso](#-informacoes-do-curso)
+2. [📸 Laboratório](#-laboratorio)
+3. [⌨️ CLI MikroTik](#-cli-mikrotik)
+   - [Atalhos no CLI](#atalhos-no-cli)
+   - [Gerenciamento de IPs](#listar-ips-das-interfaces)
+   - [Configuração de DHCP](#adicionar-um-cliente-dhcp)
+   - [Tabela de Rotas](#exibir-a-tabela-de-rotas)
+   - [Configuração de NAT](#criar-nat-para-compartilhamento-de-conexao)
+   - [Backup e Restore](#backup)
+4. [🔗 Conectividade e Acessos](#connect-to-romon)
+   - [Gerenciamento de Usuários](#criar-usuarios)
+   - [Alteração de Portas de Serviços](#alterar-a-porta-de-servicos)
+   - [Alteração da Identificação do Roteador](#alterar-identificacao-do-roteador)
+5. [🌐 DHCP e Redes Locais](#dhcp-server)
+   - [Configuração do DHCP Server](#dhcp-server)
+   - [Funcionamento do DHCP Client](#dhcp-client)
+6. [🖧 Bridge e Switching](#bridge)
+   - [Criando uma Bridge](#bridge)
+   - [Hardware Offload](#hardware-offload)
+7. [📡 Roteamento](#roteamento)
+   - [Check Gateway e Rotas](#check-gateway)
+   - [Exemplo de Rotas Entre Filiais](#exemplo-pratico)
+8. [📶 Wireless](#wireless)
+   - [Modos de Wi-Fi](#modes-wifi)
+   - [NV2 - Protocolo Proprietário MikroTik](#nv2)
+9. [🛡️ Firewall e Segurança](#firewall)
+   - [Diferenças entre Stateless e Stateful](#stateless)
+   - [Filter Rules - Regras de Bloqueio](#filter-rules)
+   - [NAT - Tradução de Endereços](#natnetwork-address-translation)
+   - [Mangle - Manipulação de Pacotes](#mangle)
+   - [RAW - Proteção Avançada](#raw)
+10. [🎯 QoS - Qualidade de Serviço](#qos)
+    - [PCQ - Balanceamento de Banda](#pcq)
+    - [Burst - Velocidade Temporária](#burst)
+11. [🔄 Túneis e VPNs](#tunels)
+    - [PPPoE Server](#servidor-pppoe)
+    - [PPTP VPN](#pptp)
+12. [🔧 Ferramentas Diversas](#ferramentas-diversas)
+    - [Monitoramento e Alertas](#netwatch)
+    - [Envio de Logs por E-mail](#tools-email)
+    - [Comandos de Diagnóstico](#ping)
+    - [Traceroute e Debug](#traceroute)
+    - [Monitoramento de CPU e Tráfego](#profile)
+    - [Torch - Análise de Pacotes](#torch)
+    - [Gráficos de Tráfego](#graph)
+    - [SNMP - Gerenciamento Remoto](#snmp)
+    - [Exportação de Configurações](#suporte-rif)
+
+
+
+
 # CLI MikroTik
 
 ## Atalhos no CLI
