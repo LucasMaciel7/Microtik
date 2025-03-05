@@ -1,4 +1,4 @@
-# 📡 Estudos em MikroTik - Certificação MTCNA
+# Estudos em MikroTik - Certificação MTCNA
 
 Este repositório contém todas as minhas anotações retiradas do curso **MTCNA V7** (20 horas) oferecido pela **SixCore Treinamentos**, ministrado pelo instrutor profissional **Leonardo Vieira**.
 
